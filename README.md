@@ -8,7 +8,7 @@ This tool requires **plogger** and **python-daemon**
 
 #### Install
 ```
-pip install git+https://gitlab.service-now.com/pascal.peltriaux/dnsproxy.git --process-dependency-links --allow-all-external
+pip install git+https://github.com/ppeltriaux/dnsproxy.git --process-dependency-links --allow-all-external
 ```
 
 ## Setup
@@ -16,7 +16,7 @@ pip install git+https://gitlab.service-now.com/pascal.peltriaux/dnsproxy.git --p
 Get and edit dnsproxy.conf sample file from git
 
 ```
-wget https://gitlab.service-now.com/pascal.peltriaux/dnsproxy/raw/master/etc/dnsproxy.conf --no-check-certificate
+wget https://github.com/ppeltriaux/dnsproxy.git/raw/master/etc/dnsproxy.conf --no-check-certificate
 ```
 
 #### Edit dnsproxy.conf
@@ -39,12 +39,12 @@ workdir: /var/tmp
 ```
 ```
 #Default nameserver to query
-nameserver: 10.249.5.11:53
+nameserver: 1.2.3.4:53
 ```
 
 ```
 #Fallback nameserver to query
-fallback_nameserver: 10.249.5.11:53
+fallback_nameserver: 1.2.3.4:53
 ```
 
 ```
@@ -85,9 +85,9 @@ Domains: [   'google.com=127.0.0.1:53',
 
 ```
 #Domain rewrite (Will rewrite one domain by another in the query)
-rewrite=[   'pascal.com:service-now.com',
-            's.com:service-now.com',
-            'google.com:servicenow.com']
+rewrite=[   'source.com:destination.com',
+            's.com:aldynes.com',
+            'g.com:google.com']
 ```
 
 ```

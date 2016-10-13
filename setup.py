@@ -7,15 +7,15 @@ setup(
     version='1.1',
     description='dns proxy / rewriting daemon',
     author='Pascal Peltriaux',
-    author_email='pascal.peltriaux@servicenow.com',
+    author_email='ppeltriaux@gmail.com',
     packages=find_packages(),
-    url = 'https://gitlab.service-now.com/pascal.peltriaux/dnsproxy',
+    url = 'https://github.com/ppeltriaux/dnsproxy.git',
     license='GPL',
     install_requires=[
         'plogger>=0.1',
         'python-daemon'
     ],
-    dependency_links=['git+https://gitlab.service-now.com/pascal.peltriaux/plogger.git#egg=plogger-0.1'],
+    dependency_links=['git+https://github.com/ppeltriaux/plogger.git#egg=plogger-0.1'],
     entry_points={
         'console_scripts': ['dnsproxy = dnsproxy.dnsproxy:main'],
     })
