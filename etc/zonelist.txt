@@ -1,3 +1,0 @@
-zone1.domain.com
-zone2.domain.com
-zone3.domain.com
