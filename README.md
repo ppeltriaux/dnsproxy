@@ -16,7 +16,7 @@ pip install git+https://github.com/ppeltriaux/dnsproxy.git --process-dependency-
 Get and edit dnsproxy.conf sample file from git
 
 ```
-wget https://github.com/ppeltriaux/dnsproxy.git/raw/master/etc/dnsproxy.conf --no-check-certificate
+wget https://rawgit.com/ppeltriaux/dnsproxy/master/etc/dnsproxy.conf --no-check-certificate
 ```
 
 #### Edit dnsproxy.conf
@@ -39,12 +39,12 @@ workdir: /var/tmp
 ```
 ```
 #Default nameserver to query
-nameserver: 1.2.3.4:53
+nameserver: 8.8.8.8:53
 ```
 
 ```
 #Fallback nameserver to query
-fallback_nameserver: 1.2.3.4:53
+fallback_nameserver: 8.8.4.4:53
 ```
 
 ```
