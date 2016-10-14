@@ -22,7 +22,7 @@ wget https://rawgit.com/ppeltriaux/dnsproxy/master/etc/dnsproxy.conf --no-check-
 #### Edit dnsproxy.conf
 
 ```
-#Host to bind to
+#Interface to bind to
 host: 127.0.0.1
 ```
 
