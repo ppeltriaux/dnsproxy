@@ -70,10 +70,14 @@ def HandleQueries(querydata, addr, server):
     response = None
 
     # blacklist
-    if bl and mydata.domain() in bl:
-        logger.debug('Blocked request for {}'.format(mydata.domain()))
-        server.sendto(mydata.data, addr)
-        return
+    if bl:
+        for item in bl:
+            blacklist = item.split('.')
+            src = mydata.domain().split('.')[-len(blacklist):]
+            if src == blacklist:
+                logger.debug('Blocked request for {}'.format(mydata.domain()))
+                server.sendto(mydata.data, addr)
+                return
 
     # Rewritting:
     for item in rewrite:
