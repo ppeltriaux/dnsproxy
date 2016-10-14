@@ -35,6 +35,7 @@ from plogger.plogger import plogger
 
 #Global Config
 CONFIG = config=ConfigParser.RawConfigParser()
+bl = []
 
 #Global Logging
 loglevel = 'DEBUG'
@@ -43,6 +44,7 @@ logger = plogger(level, 'dnsproxy')
 
 def HandleQueries(querydata, addr, server):
     ''' Handle DNS Queries '''
+    global bl
 
     if len(querydata) < 12:
         return
@@ -66,6 +68,12 @@ def HandleQueries(querydata, addr, server):
     Domains = ast.literal_eval(config.get('dnsproxy', 'Domains')) if config.has_option('dnsproxy', 'Domains') else None
 
     response = None
+
+    # blacklist
+    if bl and mydata.domain() in bl:
+        logger.debug('Blocked request for {}'.format(mydata.domain()))
+        server.sendto(mydata.data, addr)
+        return
 
     # Rewritting:
     for item in rewrite:
@@ -153,6 +161,17 @@ class ThreadedUDPServer(SocketServer.ThreadingMixIn, SocketServer.UDPServer):
         logger.info('Ready to handle queries!')
         SocketServer.UDPServer.__init__(self, s, t)
 
+def getblacklist(file):
+    global bl
+    try:
+        f = open(file,'r')
+        for line in f:
+            bl.append(line.strip('\n').strip())
+    except IOError:
+        print "Could not open Blacklist file {}".format(file)
+        return 1
+    return 0
+
 def thread_main(host, port):
     ''' main '''
 
@@ -207,6 +226,10 @@ def main():
         umask=0o002,
         pidfile=lockfile.FileLock(pid),
         )
+
+    blacklist = config.get('dnsproxy', 'blacklist') if config.has_option('dnsproxy', 'blacklist') else None
+    if blacklist and getblacklist(blacklist) == 1:
+        exit(1)
 
     #Start daemon
     if options.foreground:
