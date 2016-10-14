@@ -4,7 +4,7 @@ dns proxy service able to reroute dns request upon type of queries, domain and a
 
 ## Installation
 
-This tool requires **plogger** and **python-daemon**
+Requires **plogger** and **python-daemon**
 
 #### Install
 ```
@@ -23,7 +23,6 @@ wget https://rawgit.com/ppeltriaux/dnsproxy/master/etc/dnsproxy.conf --no-check-
 
 ```
 #Host to bind to
-[dnsproxy]
 host: 127.0.0.1
 ```
 
