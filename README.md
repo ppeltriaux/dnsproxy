@@ -6,7 +6,6 @@ dns proxy service able to reroute dns request upon type of queries, domain and a
 
 Requires **plogger** and **python-daemon**
 
-#### Install
 ```
 pip install git+https://github.com/ppeltriaux/dnsproxy.git --process-dependency-links --allow-all-external
 ```
